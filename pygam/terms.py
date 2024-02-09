@@ -1949,11 +1949,10 @@ def te(*args, **kwargs):
 intercept = Intercept()
 
 # copy docs
-for minimal_, class_ in zip(
-    [l, s, f, te], [LinearTerm, SplineTerm, FactorTerm, TensorTerm]
-):
-    minimal_.__doc__ = class_.__init__.__doc__ + minimal_.__doc__
-
+for minimal_, class_ in zip([l, s, f, te], [LinearTerm, SplineTerm, FactorTerm, TensorTerm]):
+    class_doc = class_.__init__.__doc__ or ''
+    minimal_doc = minimal_.__doc__ or ''
+    minimal_.__doc__ = class_doc + minimal_doc
 
 TERMS = {
     'term': Term,
